@@ -6,11 +6,13 @@ use yii\base\Component;
 /**
  * Class CurlMain
  * @package sorokinmedia\curl
+ *
+ * @property array $services
  */
-class CurlMain extends Component
+abstract class CurlMain extends Component
 {
-    /** @var array конфиги сервисов */
     public $services;
+
     private $_loadedServices;
 
     /**
@@ -18,6 +20,15 @@ class CurlMain extends Component
      * Загрузка всех сервисов
      */
     public function init()
+    {
+        $this->setLoadedServices();
+        parent::init();
+    }
+
+    /**
+     * подтягивает данные из конфига
+     */
+    public function setLoadedServices()
     {
         foreach ($this->services as $name => $params) {
             $class = $params['class'];
@@ -28,25 +39,14 @@ class CurlMain extends Component
                 }
             }
         }
-        parent::init();
+        $this->setServices();
     }
 
     /**
-     * сеттер для text.ru
+     * инициализация сервисов
+     * @return mixed
      */
-    public function setComponent(string $name)
-    {
-        $this->_{$name} = $this->_loadedServices[$name];
-    }
-
-    /**
-     * геттер для text.ru
-     * @return ServiceInterface
-     */
-    public function getComponent(string $name)
-    {
-        return $this->_{$name};
-    }
+    abstract public function setServices();
 
     /**
      * @return ServiceInterface[]
