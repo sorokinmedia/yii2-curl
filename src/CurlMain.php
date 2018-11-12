@@ -13,7 +13,7 @@ abstract class CurlMain extends Component
 {
     public $services;
 
-    private $_loadedServices;
+    protected $_loadedServices;
 
     /**
      * Инициализация центра.
