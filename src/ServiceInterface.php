@@ -40,7 +40,7 @@ interface ServiceInterface
      * @param IdentityInterface $user
      * @return mixed
      */
-    public function setUrl($url, $type = 'get', $fields = null, User $user = null);
+    public function setUrl($url, $type = 'get', $fields = null, IdentityInterface $user = null);
 
     /**
      * Установка типа запроса
