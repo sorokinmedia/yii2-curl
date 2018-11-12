@@ -30,4 +30,29 @@ class CurlMain extends Component
         }
         parent::init();
     }
+
+    /**
+     * сеттер для text.ru
+     */
+    public function setComponent(string $name)
+    {
+        $this->_{$name} = $this->_loadedServices[$name];
+    }
+
+    /**
+     * геттер для text.ru
+     * @return ServiceInterface
+     */
+    public function getComponent(string $name)
+    {
+        return $this->_{$name};
+    }
+
+    /**
+     * @return ServiceInterface[]
+     */
+    public function getLoadedServices()
+    {
+        return $this->_loadedServices;
+    }
 }
