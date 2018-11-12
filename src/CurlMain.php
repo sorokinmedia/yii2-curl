@@ -13,7 +13,7 @@ abstract class CurlMain extends Component
 {
     public $services;
 
-    protected $_loadedServices;
+    private $_loadedServices;
 
     /**
      * Инициализация центра.
@@ -40,6 +40,15 @@ abstract class CurlMain extends Component
             }
         }
         $this->setServices();
+    }
+
+    /**
+     * @param string $name
+     * @return mixed
+     */
+    public function getService(string $name)
+    {
+        return $this->_loadedServices[$name];
     }
 
     /**
